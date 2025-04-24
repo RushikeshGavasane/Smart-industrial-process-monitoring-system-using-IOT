@@ -1,21 +1,21 @@
 # Smart-industrial-process-monitoring-system-using-IOT
 
-This project is an **IoT-based industrial monitoring system** designed to enhance safety, automation, and efficiency in industrial environments. It enables real-time data acquisition, remote monitoring, and alert generation using a combination of sensors, microcontrollers, and IoT platforms.
+This project aims to develop an industrial process monitoring system using IOT, featuring sensors(LM35 for temperature and MQ-2 for gas/smoke) interfaced with LPC2148 microcontroller. Data is displayed on the LCD and sent to ThingSpeak cloud via an ESP01 Wi-Fi module for real-time monitoring and alerts.  
 
 ## 🚀 Features
 
 - 📡 Real-time monitoring of industrial parameters (temperature, gas, etc.)
-- 📲 Wireless data transmission using Wi-Fi (ESP8266/NodeMCU)
+- 📲 Wireless data transmission using Wi-Fi (ESP01/LPC2148)
 - 🔔 Alert notifications on abnormal conditions
 - 💾 Data logging and visualization via cloud platforms (e.g., ThingSpeak)
 - ⚙️ Easy integration with industrial systems
 
 ## 🧰 Components Used
 
-- **Microcontroller:** NodeMCU (ESP8266)
+- **Microcontroller:** LPC2148 (ESP01)
 - **Sensors:**
   - MQ-2 (Gas/Smoke sensor)
-  - DHT11/DHT22 (Temperature & Humidity sensor)
+  - LM35 (Temperature & Humidity sensor)
 - **IoT Platform:** ThingSpeak (or any compatible platform)
 - **Other:**
   - Power supply
@@ -28,24 +28,20 @@ This project is an **IoT-based industrial monitoring system** designed to enhanc
 3. Data is transmitted via Wi-Fi to the IoT platform.
 4. Users can view data on the dashboard and receive alerts if thresholds are breached.
 
-
-## 📷 Images
-
-*Add images of your hardware setup, circuit diagram, and platform dashboard here.*
-
 ## 🛠️ Setup Instructions
 
 ### 1. Hardware Setup:
-- Connect sensors to NodeMCU as per the circuit diagram.
+- Connect sensors to LPC2148 as per the circuit diagram.
 - Ensure proper power supply and stable Wi-Fi connectivity.
 
 ### 2. Software Setup:
-- Use Arduino IDE or PlatformIO for programming the ESP8266.
-- Install required libraries:
-  - `DHT`
-  - `ESP8266WiFi`
-  - `ThingSpeak`
-- Upload the code to NodeMCU.
+- Use **Arduino IDE** for programming the ESP8266 (ESP-01).
+- Select the appropriate board: `Generic ESP8266 Module`.
+- Install the required libraries:
+  - `ESP8266WiFi` – for WiFi connectivity
+  - `ThingSpeak` – for cloud data logging
+- Connect the LM35 sensor output to the **ADC (A0)** pin of ESP-01 (use a voltage divider if necessary, as ESP-01 ADC max input is 1V).
+- Modify the code to read analog values from A0 and convert them to temperature using the LM35 formula: Temperature (°C) = (analogRead(A0) * 3.3 / 1023) * 100
 
 ### 3. Cloud Configuration:
 - Create a ThingSpeak channel.
